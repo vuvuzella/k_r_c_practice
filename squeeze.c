@@ -7,7 +7,8 @@
 #include<stdlib.h>
 #include<stdio.h>
 
-char* squeeze(char[], char);
+void squeeze(char[], char);
+void copy(char[], char[]);
 
 int main(int argc, char* argv[]) {
 
@@ -15,25 +16,29 @@ int main(int argc, char* argv[]) {
         printf("Please input at least 2 arguments.\n");
         return -1;
     }
-    char c = (char)argv[2];
+    // printf("%d\n", sizeof(argv[2]));
 
-    char* s = squeeze(argv[1], c);
-
-    printf("The new string is: %s\n", s);
+    squeeze(argv[1], *argv[2]);
+    printf("The new string is: %s\n", argv[1]);
 
     return 0;
 }
 
-char* squeeze(char s[], char c) {
+void squeeze(char s[], char c) {
     int i, j;
-
     for (i = j = 0; s[i] != '\0'; i++) {
         if (s[i] != c) {
             s[j++] = s[i];  // s[i] is stored first, before j i incremented.
         }
     }
-
     s[j] = '\0';
+}
 
-    return &s[0];
+void copy(char from[], char to[]) {
+    int i, j;
+
+    while(from[i] != '\0') {
+        to[i] = from[i];
+    }
+
 }
